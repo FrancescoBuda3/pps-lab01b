@@ -29,7 +29,7 @@ public class SilverBankAccountTest extends CoreBankAccountTest {
     @Test
     public void testCannotWithdrawMoreThanAvailable(){
         this.account.deposit(BASE_DEPOSIT);
-        assertThrows(IllegalStateException.class, () -> this.account.withdraw(BASE_DEPOSIT+FEE));
+        assertThrows(IllegalStateException.class, () -> this.account.withdraw(BASE_DEPOSIT+1));
     }
 
 }
