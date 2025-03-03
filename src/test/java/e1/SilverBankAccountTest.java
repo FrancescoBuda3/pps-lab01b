@@ -14,7 +14,8 @@ public class SilverBankAccountTest extends CoreBankAccountTest {
     @Override
     @BeforeEach
     void init(){
-        this.account = new FeeBankAccount(new CanWithdrawBankAccount(new CoreBankAccount()), FEE);
+        BankAccountFactory factory = new BankAccountFactoryImpl();
+        this.account = factory.createSilverBankAccount(FEE);
     }
 
     @Override
