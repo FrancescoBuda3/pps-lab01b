@@ -9,10 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class SilverBankAccountTest extends CoreBankAccountTest {
 
 
+    public static final int FEE = 1;
+
     @Override
     @BeforeEach
     void init(){
-        this.account = new SilverBankAccount(new CoreBankAccount());
+        this.account = new FeeBankAccount(new CoreBankAccount(), FEE);
     }
 
     @Override
@@ -20,13 +22,13 @@ public class SilverBankAccountTest extends CoreBankAccountTest {
     public void testCanWithdraw() {
         this.account.deposit(BASE_DEPOSIT);
         this.account.withdraw(TEST_WITHDRAW);
-        assertEquals(BASE_DEPOSIT-TEST_WITHDRAW-SilverBankAccount.FEE, this.account.getBalance());
+        assertEquals(BASE_DEPOSIT-TEST_WITHDRAW-FEE, this.account.getBalance());
     }
 
     @Test
     public void testCannotWithdrawMoreThanAvailable(){
         this.account.deposit(BASE_DEPOSIT);
-        assertThrows(IllegalStateException.class, () -> this.account.withdraw(BASE_DEPOSIT+1));
+        assertThrows(IllegalStateException.class, () -> this.account.withdraw(BASE_DEPOSIT+FEE));
     }
 
 }
