@@ -14,7 +14,7 @@ public class SilverBankAccountTest extends CoreBankAccountTest {
     @Override
     @BeforeEach
     void init(){
-        this.account = new FeeBankAccount(new CoreBankAccount(), FEE);
+        this.account = new FeeBankAccount(new CanWithdrawBankAccount(new CoreBankAccount()), FEE);
     }
 
     @Override
