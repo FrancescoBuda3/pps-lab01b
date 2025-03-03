@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CoreBankAccountTest {
 
+    public static final int BASE_DEPOSIT = 1000;
+    public static final int TEST_WITHDRAW = 200;
     protected BankAccount account;
 
     @BeforeEach
@@ -21,15 +23,15 @@ public class CoreBankAccountTest {
 
     @Test
     public void testCanDeposit() {
-        this.account.deposit(1000);
-        assertEquals(1000, this.account.getBalance());
+        this.account.deposit(BASE_DEPOSIT);
+        assertEquals(BASE_DEPOSIT, this.account.getBalance());
     }
 
     @Test
     public void testCanWithdraw() {
-        this.account.deposit(1000);
-        this.account.withdraw(200);
-        assertEquals(800, this.account.getBalance());
+        this.account.deposit(BASE_DEPOSIT);
+        this.account.withdraw(TEST_WITHDRAW);
+        assertEquals(BASE_DEPOSIT-TEST_WITHDRAW, this.account.getBalance());
     }
 
 }
