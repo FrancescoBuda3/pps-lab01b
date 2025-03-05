@@ -33,6 +33,10 @@ public class SimpleChessboard implements Chessboard {
 
     @Override
     public void moveKnight(int row, int col) {
-        this.knightPosition = new Pair<>(row,col);
+        if (row >= this.size ||  col >= this.size) {
+            throw new IndexOutOfBoundsException();
+        } else {
+            this.knightPosition = new Pair<>(row,col);
+        }
     }
 }

@@ -32,4 +32,11 @@ public class ChessboardTest {
         this.chessboard.moveKnight(row, column);
         assertEquals(new Pair<>(row,column), this.chessboard.getKnightPosition());
     }
+
+    @Test
+    public void knightCannotBeMovedOutOfBounds() {
+        int row = 7;
+        int column = 9;
+        assertThrows(IndexOutOfBoundsException.class, () -> this.chessboard.moveKnight(row, column));
+    }
 }
