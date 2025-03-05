@@ -1,6 +1,7 @@
 package e2;
 import org.junit.jupiter.api.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -11,6 +12,7 @@ public class LogicTest {
   public static final Pair<Integer,Integer> SCRIPTED_PAWN_POS = new Pair<>(1,1);
   public static final  Pair<Integer,Integer> SCRIPTED_KNIGHT_POS = new Pair<>(3,2);
   public static final Logics SCRIPTED_CHESSBOARD = new LogicsImpl(SIZE, SCRIPTED_PAWN_POS,  SCRIPTED_KNIGHT_POS);
+  public static final List<Pair<Integer, Integer>> POSSIBLE_SCRIPTED_MOVEMENTS = List.of(new Pair<>(1,1), new Pair<>(1,3), new Pair<>(4,0), new Pair<>(2,0), new Pair<>(2,4) , new Pair<>(4,4));
 
   private Logics game;
 
@@ -67,6 +69,15 @@ public class LogicTest {
   @Test
   public void pawnCanBeHit(){
     assertTrue(SCRIPTED_CHESSBOARD.hit(SCRIPTED_PAWN_POS.getX(), SCRIPTED_PAWN_POS.getY()));
+  }
+
+  @Test
+  public void KnightCanMoveInAllowedPositions(){
+      for (Pair<Integer, Integer> movement : POSSIBLE_SCRIPTED_MOVEMENTS) {
+          SCRIPTED_CHESSBOARD.hit(movement.getX(), movement.getY());
+          assertTrue(SCRIPTED_CHESSBOARD.hasKnight(movement.getX(), movement.getY()));
+          SCRIPTED_CHESSBOARD.hit(SCRIPTED_KNIGHT_POS.getX(), SCRIPTED_KNIGHT_POS.getY());
+      }
   }
 
 
