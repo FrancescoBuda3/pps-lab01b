@@ -24,4 +24,12 @@ public class ChessboardTest {
     public void pawnIsInitiallyPresent(){
         assertNotNull(this.chessboard.getPawnPosition());
     }
+
+    @Test
+    public void knightCanBeMoved(){
+        int row = 2;
+        int column = 3;
+        this.chessboard.moveKnight(row, column);
+        assertEquals(new Pair<>(row,column), this.chessboard.getKnightPosition());
+    }
 }

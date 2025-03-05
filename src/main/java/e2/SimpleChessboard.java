@@ -5,7 +5,7 @@ import java.util.Random;
 public class SimpleChessboard implements Chessboard {
     private final int size;
     private final Random random = new Random();
-    private final Pair<Integer, Integer> knightPosition;
+    private Pair<Integer, Integer> knightPosition;
     private final Pair<Integer, Integer> pawnPosition;
 
 
@@ -29,5 +29,10 @@ public class SimpleChessboard implements Chessboard {
     @Override
     public Pair<Integer, Integer> getPawnPosition() {
         return this.pawnPosition;
+    }
+
+    @Override
+    public void moveKnight(int row, int col) {
+        this.knightPosition = new Pair<>(row,col);
     }
 }
