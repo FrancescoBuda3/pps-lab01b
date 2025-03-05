@@ -3,7 +3,7 @@ package e1;
 public class BankAccountFactoryImpl implements BankAccountFactory {
     @Override
     public BankAccount createSilverBankAccount(int fee) {
-        return new FeeBankAccount(new CanWithdrawBankAccount(new CoreBankAccount(), 0), fee);
+        return new FeeBankAccount(new CanWithdrawBankAccount(new CoreBankAccount(), 0), fee, 0);
     }
 
     @Override
@@ -12,7 +12,7 @@ public class BankAccountFactoryImpl implements BankAccountFactory {
     }
 
     @Override
-    public BankAccount createBronzeBankAccount() {
-        return new CanWithdrawBankAccount(new CoreBankAccount(), 0);
+    public BankAccount createBronzeBankAccount(int fee, int threshold) {
+        return new FeeBankAccount(new CanWithdrawBankAccount(new CoreBankAccount(), 0),  fee, threshold);
     }
 }
