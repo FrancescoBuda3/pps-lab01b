@@ -52,5 +52,11 @@ public class LogicTest {
     assert(pawnPos.isPresent());
   }
 
+  @Test
+  public void knightIsPresent(){
+    Optional<Pair<Integer, Integer>> knightPos = find(false);
+    assert(knightPos.isPresent());
+  }
+
 
 }
