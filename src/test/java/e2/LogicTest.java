@@ -4,8 +4,14 @@ import org.junit.jupiter.api.*;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class LogicTest {
   public static final int SIZE = 5;
+  public static final Pair<Integer,Integer> SCRIPTED_PAWN_POS = new Pair<>(1,1);
+  public static final  Pair<Integer,Integer> SCRIPTED_KNIGHT_POS = new Pair<>(3,2);
+  public static final Logics SCRIPTED_CHESSBOARD = new LogicsImpl(SIZE, SCRIPTED_PAWN_POS,  SCRIPTED_KNIGHT_POS);
+
   private Logics game;
 
   @BeforeEach
@@ -57,6 +63,13 @@ public class LogicTest {
     Optional<Pair<Integer, Integer>> knightPos = find(false);
     assert(knightPos.isPresent());
   }
+
+  @Test
+  public void pawnCanBeHit(){
+    assertTrue(SCRIPTED_CHESSBOARD.hit(SCRIPTED_PAWN_POS.getX(), SCRIPTED_PAWN_POS.getY()));
+  }
+
+
 
 
 }
