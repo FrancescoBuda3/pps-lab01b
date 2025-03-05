@@ -108,6 +108,25 @@ public class LogicTest {
     }
   }
 
+  private static Set<Pair<Integer, Integer>> generateOutOfBoundPositions() {
+    Set <Pair<Integer, Integer>> outOfBoundsPositions = new HashSet<>();
+    for (int i = -1; i < SIZE+1; i++) {
+      outOfBoundsPositions.add(new Pair<>(i,-1));
+      outOfBoundsPositions.add(new Pair<>(i,SIZE+1));
+      outOfBoundsPositions.add(new Pair<>(-1,i));
+      outOfBoundsPositions.add(new Pair<>(SIZE+1,i));
+    }
+    return outOfBoundsPositions;
+  }
+
+  @Test
+  public void knightCannotMoveOutOfBounds(){
+    Set<Pair<Integer, Integer>> outOfBoundsPositions = generateOutOfBoundPositions();
+    for (Pair<Integer, Integer> movement : outOfBoundsPositions) {
+      assertThrows(IndexOutOfBoundsException.class , () -> scriptedChessboard.hit(movement.getX(), movement.getY()));
+    }
+  }
+
 
 
 
