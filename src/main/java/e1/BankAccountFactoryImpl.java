@@ -10,4 +10,9 @@ public class BankAccountFactoryImpl implements BankAccountFactory {
     public BankAccount createGoldBankAccount(int overdraft) {
         return new CanWithdrawBankAccount(new CoreBankAccount(), overdraft);
     }
+
+    @Override
+    public BankAccount createBronzeBankAccount() {
+        return new CanWithdrawBankAccount(new CoreBankAccount(), 0);
+    }
 }
