@@ -1,6 +1,6 @@
 package e2;
 
-public class KnightLogic implements PiceLogic {
+public class KnightLogic implements PieceLogic {
 
     @Override
     public boolean moveIsValid(Pair<Integer, Integer> startPosition, Pair<Integer, Integer> endPosition) {

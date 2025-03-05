@@ -3,13 +3,16 @@ package e2;
 public class LogicsImpl implements Logics {
 	
 	private final Chessboard  chessboard;
+	private final PieceLogic knightLogic;
 	 
     public LogicsImpl(int size){
     	this.chessboard = new SimpleChessboard(size);
+		this.knightLogic = new KnightLogic();
     }
 
 	public LogicsImpl(int size, Pair<Integer, Integer> pawn, Pair<Integer, Integer> knight){
-		this.chessboard = new SimpleChessboard(size, pawn, knight);
+        this.chessboard = new SimpleChessboard(size, pawn, knight);
+		this.knightLogic = new KnightLogic();
 	}
     
 	@Override
@@ -17,14 +20,12 @@ public class LogicsImpl implements Logics {
 		if (row<0 || col<0 || row >= this.chessboard.getSize() || col >= this.chessboard.getSize()) {
 			throw new IndexOutOfBoundsException();
 		}
-		// Below a compact way to express allowed moves for the knight
-		int x = row-this.chessboard.getKnightPosition().getX();
-		int y = col-this.chessboard.getKnightPosition().getY();
-		if (x!=0 && y!=0 && Math.abs(x)+Math.abs(y)==3) {
+		if (this.knightLogic.moveIsValid(this.chessboard.getKnightPosition(), new Pair<>(row, col))){
 			this.chessboard.moveKnight(row, col);
 			return this.chessboard.getPawnPosition().equals(this.chessboard.getKnightPosition());
+		} else {
+			return false;
 		}
-		return false;
 	}
 
 	@Override
