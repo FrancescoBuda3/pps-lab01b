@@ -15,6 +15,12 @@ public class SimpleChessboard implements Chessboard {
         this.knightPosition = randomEmptyPosition();
     }
 
+    public SimpleChessboard(int size, Pair<Integer, Integer> pawn, Pair<Integer, Integer> knight){
+        this.size = size;
+        this.pawnPosition = pawn;
+        this.knightPosition = knight;
+    }
+
     private Pair<Integer,Integer> randomEmptyPosition(){
         Pair<Integer,Integer> pos = new Pair<>(this.random.nextInt(size),this.random.nextInt(size));
         // the recursive call below prevents clash with an existing pawn
@@ -29,6 +35,11 @@ public class SimpleChessboard implements Chessboard {
     @Override
     public Pair<Integer, Integer> getPawnPosition() {
         return this.pawnPosition;
+    }
+
+    @Override
+    public int getSize() {
+        return this.size;
     }
 
     @Override
