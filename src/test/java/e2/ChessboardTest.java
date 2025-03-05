@@ -19,4 +19,9 @@ public class ChessboardTest {
     public void knightIsInitiallyPresent(){
         assertNotNull(this.chessboard.getKnightPosition());
     }
+
+    @Test
+    public void pawnIsInitiallyPresent(){
+        assertNotNull(this.chessboard.getPawnPosition());
+    }
 }

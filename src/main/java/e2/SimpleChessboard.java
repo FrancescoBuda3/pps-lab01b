@@ -25,4 +25,9 @@ public class SimpleChessboard implements Chessboard {
     public Pair<Integer, Integer> getKnightPosition() {
         return this.knightPosition;
     }
+
+    @Override
+    public Pair<Integer, Integer> getPawnPosition() {
+        return this.pawnPosition;
+    }
 }
